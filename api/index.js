@@ -1,13 +1,16 @@
 const express = require("express");
 const colors = require("colors");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+const userRoutes = require("./routes/user");
 
-dotenv.config();
+require("dotenv").config();
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+
+// routes
+app.use("/api/user", userRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)
