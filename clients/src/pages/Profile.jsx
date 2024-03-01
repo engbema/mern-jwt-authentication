@@ -13,7 +13,6 @@ const Profile = () => {
   const fileRef = useRef(null);
   const [image, setImage] = useState(undefined);
   const [imagePercent, setImagePercent] = useState(0);
-  console.log(imagePercent);
   const [imageError, setImageError] = useState(false);
   const [formData, setFormData] = useState({});
 
@@ -67,11 +66,7 @@ const Profile = () => {
           request.resource.contentType.matches('image/.*')
        */}
         <img
-          src={
-            currentUser.profilePicture
-              ? currentUser.profilePicture
-              : "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
-          }
+          src={formData.profilePicture || currentUser.profilePicture}
           alt="profile"
           className="h-24 w-24 self-center mt-2 cursor-pointer rounded-full object-cover"
           onClick={() => fileRef.current.click()}
