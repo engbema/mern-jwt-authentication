@@ -11,17 +11,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 // solve cors errors
-app.use((req, res, next) => {
-  // you can down to specific domains though if you want.
-  // but now use '*' instead of 'codepen.io'
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+// app.use((req, res, next) => {
+//   // you can down to specific domains though if you want.
+//   // but now use '*' instead of 'codepen.io'
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+//   );
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
 
 // routes
 app.use("/api/user", userRoutes);

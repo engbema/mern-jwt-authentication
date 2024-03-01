@@ -26,12 +26,17 @@ exports.signIn = async (req, res, next) => {
     if (!validUser) return next(errorHandler(404, "User Not Found!"));
     const isMatch = await bcrypt.compare(password, validUser.password);
     if (!isMatch) return next(errorHandler(401, "Wrong Credentials!"));
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
     const { password: hashedPassword, ...rest } = validUser._doc;
     // expiryDate
     const expiryDate = new Date(Date.now() + 3600000); // 1 hour
     res
-      .cookie("access_token", token, { httpOnly: true, expires: expiryDate })
+      .cookie("access_token", token, {
+        httpOnly: true,
+        expires: expiryDate,
+      })
       .status(200)
       .json(rest);
   } catch (err) {
