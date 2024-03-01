@@ -3,10 +3,12 @@ const colors = require("colors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 // solve cors errors
 app.use((req, res, next) => {
